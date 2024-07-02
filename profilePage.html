@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sodia</title>
+    <!-- Bootstrap v5.3.3 -->
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- Normalize Css -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <!-- General Css  -->
+    <link rel="stylesheet" href="./css/style.css">
+  </head>
+  <body>
+    <!-- CREATE POST BUTTON -->
+    <div id="create-post-button-placeholder" style="z-index: 100; position: fixed; bottom: 50px; left: 50px;"></div>
+    <!-- SCROLL TO TOP BUTTON -->
+    <button id="scroll-top" class="btn btn-primary rounded-circle d-flex justify-content-center align-items-center shadow" style="width: 50px; height: 50px; z-index: 100; position: fixed; bottom: 50px; right: 50px; display: none !important;" onclick="scrollToTop()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+      </svg>
+    </button>
+    <!-- ======MODALS===== -->
+    <!-- LOGIN MODAL -->
+    <div class="modal fade" id="login-form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Log In</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="login-username" class="col-form-label">Username:</label>
+                <input type="text" class="form-control" id="login-username">
+              </div>
+              <div class="mb-3">
+                <label for="login-password" class="col-form-label">Passward:</label>
+                <input type="password" class="form-control" id="login-password">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="login()">Log In</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- // LOGIN MODAL -->
+    <!-- LOGOUT MODAL -->
+    <div class="modal fade" id="logout-message" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to log out?</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" onclick="logout()">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--// LOGOUT MODAL //-->
+    <!-- DELETE POST MODAL -->
+    <div class="modal fade" id="delete-post-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to delete this post?</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" id="modal-delete-btn" class="btn btn-danger" data-postid="0" onclick="deletePost(this.dataset.postid)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--// DELETE POST MODAL //-->
+    <!-- REGISTER MODAL -->
+    <div class="modal fade" id="register-form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Register</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="register-username" class="col-form-label">Username:</label>
+                <input type="text" class="form-control" id="register-username">
+              </div>
+              <div class="mb-3">
+                <label for="register-password" class="col-form-label">Passward:</label>
+                <input type="password" class="form-control" id="register-password">
+              </div>
+              <div class="mb-3">
+                <label for="register-image" class="col-form-label">Profile Image:</label>
+                <input type="file" class="form-control" id="register-image" accept="image/*">
+              </div>
+              <div class="mb-3">
+                <label for="register-name" class="col-form-label">Name:</label>
+                <input type="text" class="form-control" id="register-name">
+              </div>
+              <div class="mb-3">
+                <label for="register-email" class="col-form-label">Email:</label>
+                <input type="email" class="form-control" id="register-email">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="register()">Register</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--// REGISTER MODAL //-->
+    <!-- CREATE POST MODAL -->
+    <div class="modal fade" id="create-post-form" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="create-post-label">Create New Post</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="new-post-title" class="col-form-label">Title:</label>
+                <input type="text" class="form-control" id="new-post-title">
+              </div>
+              <div class="mb-3">
+                <label for="new-post-body" class="col-form-label">Body:</label>
+                <textarea id="new-post-body" class="form-control" style="min-height: 150px"></textarea>
+              </div>
+              <div id="post-image-input" class="mb-3">
+                <label for="new-post-image" class="col-form-label">Post Image:</label>
+                <input type="file" class="form-control" id="new-post-image" accept="image/*">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button id="create-post-btn" type="button" class="btn btn-primary" data-postid="" onclick="createPost(this.dataset.postid)">Create</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--// CREATE POST MODAL //-->
+    <!-- ======ALERTS====== -->
+    <div id="success-alert" class="position-fixed bottom-0 end-0" style="z-index: 99999;"></div>
+    <!-- NAVIGATION BAR  -->
+    <div class="container">
+      <div class="flex-container-nav d-md-flex justify-content-center w-100">
+        <div class="nav-container col-12 col-md-12 col-lg-9">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary pt-3 shadow rounded-bottom">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="home.html">Sodia</a>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="home.html">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-house-fill ms-1 ms-md-1 ms-lg-0" viewBox="0 0 16 16">
+                        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+                        <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"/>
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+                <div id="user-info" class="d-flex align-items-center w-md-100 mb-3 mb-lg-0 mb-md-3" style="cursor: pointer;" onclick="showProfilePage()">
+                  <!-- User Info will be appended here -->
+                </div>
+                <div class="nav-buttons"><!--Buttons will be appended here--></div>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <!--// NAVIGATION BAR  //-->
+    <!-- MAIN CONTENT -->
+    <div class="container">
+      <div class="d-flex justify-content-center mt-5">
+        <div class="col-12 col-md-12 col-lg-9">
+          <div id="user-info-container">
+            <!-- User info card will be appended here -->
+          </div>
+          <div id="posts-container" class="w-100">
+            <!-- Posts will be appended here -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--// MAIN CONTENT //-->
+  </body>
+  <!-- Bootstrap v5.3.3 -->
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Axios Library -->
+  <script src="./node_modules/axios/dist/axios.min.js"></script>
+  <!-- javascript files -->
+  <script src="./js/main.js"></script>
+  <script src="./js/profilePage.js"></script>
+</html>

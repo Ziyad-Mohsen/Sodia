@@ -1,0 +1,8 @@
+html {
+  scroll-behavior: smooth !important;
+}
+body {
+  background-color: #f8ecff;
+  font-family: "Lato", sans-serif;
+  font-style: normal;
+}
