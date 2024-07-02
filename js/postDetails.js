@@ -21,7 +21,7 @@ window.addEventListener("scroll", function () {
     commnetsShown
   ) {
     if (nextPage) {
-      showComments(false, nextPage);
+      showComments(false, nextPage.replace("http://", "https://"));
     }
   }
 });

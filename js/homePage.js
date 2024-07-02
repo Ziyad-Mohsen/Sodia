@@ -13,7 +13,7 @@ window.addEventListener("scroll", function () {
     (window.scrollY + window.innerHeight) >= (threshold * document.body.offsetHeight) && !isFetchingPhotos
   ) {
     if (nextPage) {
-      getPosts(nextPage, false);
+      getPosts(nextPage.replace("http://", "https://"), false);
     }
   }
 });
