@@ -1,7 +1,7 @@
 Sodia
 =====
 
-Sodia is a social media website built with HTML, CSS, Bootstrap, and JavaScript. This project utilizes the [Tarmeez Academy API](https://documenter.getpostman.com/view/4696539/2s83zjqN3F) to provide social media functionalities such as user registration, login/logout, creating, editing, and deleting posts, infinite scrolling, and pagination. The application consists of three main pages: Home, Post Details, and Profile.
+Sodia is a social media website built with HTML, CSS, Bootstrap, and JavaScript. This project utilizes the [Tarmeez Academy API](https://documenter.getpostman.com/view/4696539/2s83zjqN3F) to provide social media functionalities such as user registration, login/logout, creating, editing, and deleting posts, infinite scrolling, and pagination. The application consists of three main pages: Home, Post Details, and Profile. [Visit Sodia Website](https://ziyad-mohsen.github.io/Sodia/index.html)
 
 Table of Contents
 -----------------
