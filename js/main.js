@@ -174,7 +174,7 @@ function logout() {
   const modalInstance = bootstrap.Modal.getInstance(modal);
   modalInstance.hide();
   showAlert("Logged out", "warning");
-  window.location.href = "home.html";
+  window.location.href = "index.html";
 }
 
 async function createPost(id) {
@@ -212,7 +212,7 @@ async function createPost(id) {
     modalInstance.hide();
     // showAlert("Post Created", "success");
     if(!id) {
-      window.location.href = "home.html";
+      window.location.href = "index.html";
     } else {
       window.location.reload();
     }
