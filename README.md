@@ -1,7 +1,7 @@
 Sodia
 =====
 
-Sodia is a social media website built with HTML, CSS, Bootstrap, and JavaScript. This project utilizes the [Tarmeez Academy API](https://tarmeezacademy.com/api/v1) to provide social media functionalities such as user registration, login/logout, creating, editing, and deleting posts, infinite scrolling, and pagination. The application consists of three main pages: Home, Post Details, and Profile.
+Sodia is a social media website built with HTML, CSS, Bootstrap, and JavaScript. This project utilizes the [Tarmeez Academy API](https://documenter.getpostman.com/view/4696539/2s83zjqN3F) to provide social media functionalities such as user registration, login/logout, creating, editing, and deleting posts, infinite scrolling, and pagination. The application consists of three main pages: Home, Post Details, and Profile.
 
 Table of Contents
 -----------------
@@ -49,26 +49,21 @@ Technologies Used
 -   CSS
 -   Bootstrap
 -   JavaScript
--   [Tarmeez Academy API](https://tarmeezacademy.com/api/v1)
+-   axios
+-   [Tarmeez Academy API](https://documenter.getpostman.com/view/4696539/2s83zjqN3F)
 
 Installation
 ------------
 
 1.  Clone the repository:
+   
+    ```sh
+    git clone https://github.com/Ziyad-Mohsen/Sodia.git
 
-    bash
-
-    Copy code
-
-    `git clone https://github.com/yourusername/sodia.git`
-
-2.  Navigate to the project directory:
-
-    bash
-
-    Copy code
-
-    `cd sodia`
+3.  Navigate to the project directory:
+   
+    ```sh
+    cd sodia
 
 Usage
 -----
@@ -95,7 +90,7 @@ This project is based on the [Tarmeez Academy API](https://tarmeezacademy.com/ap
 -   `POST /posts/{id}/comments`: Add a comment to a post.
 -   `GET /users/{id}`: Retrieve user profile details.
 
-For a full list of endpoints and their usage, refer to the [API documentation](https://tarmeezacademy.com/api/v1).
+For a full list of endpoints and their usage, refer to the [API documentation](https://documenter.getpostman.com/view/4696539/2s83zjqN3F).
 
 Contributing
 ------------
@@ -103,7 +98,7 @@ Contributing
 Contributions are welcome! Please fork this repository and submit a pull request for any enhancements or bug fixes.
 
 1.  Fork the repository.
-2.  Create a new branch (`git checkout -b feature-branch`).
+2.  Create a new branch (`git checkout -b [Your feature]-branch`).
 3.  Commit your changes (`git commit -m 'Add new feature'`).
-4.  Push to the branch (`git push origin feature-branch`).
+4.  Push to the branch (`git push origin [Your feature]-branch`).
 5.  Open a pull request.
