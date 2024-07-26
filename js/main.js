@@ -196,7 +196,7 @@ async function createPost(id) {
     if (id) {
       res = await axios.put(url + `/${id}`, formData, {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
@@ -211,13 +211,13 @@ async function createPost(id) {
     const modalInstance = bootstrap.Modal.getInstance(modal);
     modalInstance.hide();
     // showAlert("Post Created", "success");
-    if(!id) {
+    if (!id) {
       window.location.href = "index.html";
     } else {
       window.location.reload();
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     showAlert(error.response.data.message, "danger");
   }
 }
@@ -281,7 +281,7 @@ function getPosts(
             <div class="card-body">
               ${
                 typeof postImage !== "object"
-                  ? `<div class="overflow-hidden" style="max-height: 500px; cursor: pointer;" onclick="showPostDetails(${post.id})"><img class="w-100" src="${postImage}" alt="profile picture"></img></div>`
+                  ? `<div class="overflow-hidden" style="cursor: pointer;" onclick="showPostDetails(${post.id})"><img class="w-100" src="${postImage}" alt="Profile Image" onerror="this.src='./assets/imags/image-not-found-icon.svg'")"></img></div>`
                   : ""
               }
               <span class="post-date my-2 d-block" style="color: rgb(155, 154, 154);">${postDate}</span>
@@ -324,6 +324,11 @@ function getPosts(
     })
     .catch((error) => {
       isFetching = false;
+      postsContainer.innerHTML = `
+        <div>
+          <img src="./assets/imags/not-found.png" alt="Not Found" class="w-100"/>
+        </div>
+      `;
       showAlert(error, "danger");
     });
 }
