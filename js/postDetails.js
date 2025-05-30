@@ -1,7 +1,7 @@
 const postContainer = document.querySelector(".post-container");
 const params = new URLSearchParams(window.location.search);
 const postId = params.get("postId");
-let commnetsShown = false;
+let commentsShown = false;
 let nextPage = "";
 let commentCount = 0;
 
@@ -18,7 +18,7 @@ window.addEventListener("scroll", function () {
     window.scrollY + window.innerHeight >=
       threshold * document.body.offsetHeight &&
     !isFetchingComments &&
-    commnetsShown
+    commentsShown
   ) {
     if (nextPage) {
       showComments(false, nextPage.replace("http://", "https://"));
@@ -36,8 +36,8 @@ async function showPostDetails() {
       postContainer.innerHTML = `
         <div class="post card shadow mb-3">
           <div class="card-header" style="cursor: pointer;" onclick="showProfilePage(${
-                post.author.id
-              })">
+            post.author.id
+          })">
             <img
               class="rounded-circle border border-2"
               src="${
@@ -189,7 +189,7 @@ async function showComments(
 }
 
 function commentsButtonClicked() {
-  commnetsShown = !commnetsShown;
+  commentsShown = !commentsShown;
 }
 
 function addComment() {
